@@ -1,0 +1,351 @@
+/* Nord */
+@define-color background rgba(46, 52, 64, 0.9);
+@define-color dark #2e3440;
+@define-color light #eceff4;
+@define-color warning #d08770;
+@define-color critical #bf616a;
+@define-color mode #4c566a;
+@define-color workspaces #81a1c1;
+@define-color workspacesoccupied #ebcb8b;
+@define-color workspacesfocused #88c0d0;
+@define-color workspacesurgent #bf616a;
+@define-color mpris #d8dee9;
+@define-color tray #4c566a;
+@define-color battery #b48ead;
+@define-color pulseaudio #81a1c1;
+@define-color backlight #88c0d0;
+@define-color cpu #a3be8c;
+@define-color memory #ebcb8b;
+@define-color network #d08770;
+@define-color swaync #bf616a;
+@define-color date #2e3440;
+@define-color time #eceff4;
+@define-color wlogout #7303fc;
+
+/* OneDark */
+/* @define-color background rgba(40, 44, 52, 0.9);
+@define-color dark #282c34;
+@define-color light #dfdfdf;
+@define-color warning #d19a66;
+@define-color critical #e06c75;
+@define-color mode #4b5263;
+@define-color workspaces #61afef;
+@define-color workspacesoccupied #e5c07b;
+@define-color workspacesfocused #56b6c2;
+@define-color workspacesurgent #e06c75;
+@define-color mpd #abb2bf;
+@define-color layout #4b5263;
+@define-color battery #c678dd;
+@define-color pulseaudio #61afef;
+@define-color temp #56b6c2;
+@define-color cpu #98c379;
+@define-color memory #e5c07b;
+@define-color network #d19a66;
+@define-color weather #e06c75;
+@define-color date #282c34;
+@define-color time #dfdfdf; */
+
+/* -----------------------------------------------------------------------------
+ * Keyframes
+ * -------------------------------------------------------------------------- */
+
+@keyframes blink-warning {
+    70% {
+        color: @dark;
+    }
+
+    to {
+        color: @dark;
+        background-color: @warning;
+    }
+}
+
+@keyframes blink-critical {
+    70% {
+        color: @dark;
+    }
+
+    to {
+        color: @dark;
+        background-color: @critical;
+    }
+}
+
+/* -----------------------------------------------------------------------------
+ * Styles
+ * -------------------------------------------------------------------------- */
+
+/* Reset all styles */
+* {
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    min-height: 0;
+}
+
+/* The whole bar */
+#waybar {
+    background: @background;
+    color: @light;
+    font-family: Iosevka Nerd Font, Sarasa Mono J;
+    font-size: 12pt;
+    font-weight: bold;
+}
+
+/* Each module */
+#clock,
+#custom-weather,
+#network,
+#memory,
+#cpu,
+#custom-temp,
+#pulseaudio,
+#custom-pulse,
+#custom-alsa,
+#battery,
+#custom-layout,
+#mpris,
+#custom-media,
+#mode {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+#tray {
+    background: @tray;
+    color: @light;
+}
+
+/* Each blink module */
+#battery {
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+/* Each critical module */
+#memory.critical,
+#cpu.critical,
+#battery.critical {
+    color: @critical;
+}
+
+/* Each critical that should blink */
+#battery.critical.discharging {
+    animation-name: blink-critical;
+    animation-duration: 2s;
+}
+
+/* Each warning */
+#memory.warning,
+#cpu.warning,
+#battery.warning {
+    color: @warning;
+}
+
+/* Each warning that should blink */
+#battery.warning.discharging {
+    animation-name: blink-warning;
+    animation-duration: 2s;
+}
+
+#tags button {
+    padding-left: 4px;
+    padding-right: 4px;
+    color: @dark;
+    background: @workspaces;
+}
+
+#tags button.occupied {
+    color: @dark;
+    background: @workspacesoccupied;
+}
+
+#tags button.active {
+    color: @dark;
+    background: @workspacesfocused;
+}
+
+#tags button.urgent {
+    color: @dark;
+    background: @workspacesurgent;
+}
+
+#mode {
+    color: @light;
+    background: @mode;
+}
+
+#workspaces button {
+    padding-left: 4px;
+    padding-right: 4px;
+    color: @dark;
+    background: @workspaces;
+}
+
+#workspaces button.active {
+    background: @workspacesfocused;
+}
+
+#workspaces button.urgent {
+    background: @workspacesurgent;
+}
+
+#window {
+    margin-right: 30px;
+    margin-left: 30px;
+}
+
+#mpris {
+    background: @mpris;
+    color: @dark;
+}
+
+#custom-layout {
+    background: @layout;
+    color: @light;
+}
+
+#battery {
+    background: @battery;
+    color: @dark;
+}
+
+#pulseaudio {
+    background: @pulseaudio;
+    color: @dark;
+}
+
+#custom-pulse {
+    background: @pulseaudio;
+    color: @dark;
+}
+
+#custom-alsa {
+    background: @pulseaudio;
+    color: @dark;
+}
+
+#backlight {
+    background: @backlight;
+    color: @dark;
+}
+
+#cpu {
+    background: @cpu;
+    color: @dark;
+}
+
+#memory {
+    background: @memory;
+    color: @dark;
+}
+
+#network {
+    background: @network;
+    color: @dark;
+}
+
+#custom-swaync {
+    background: @swaync;
+    color: @dark;
+}
+
+#clock.date {
+    background: @date;
+    color: @light;
+}
+
+#clock.time {
+    background: @time;
+    color: @dark;
+}
+
+#custom-wlogout {
+    background: @wlogout;
+    color: @white
+}
+
+/* -----------------------------------------------------------------------------
+ * Arrows
+ * -------------------------------------------------------------------------- */
+
+#custom-arrow2 {
+    font-size: 23.5px;
+    color: @workspaces;
+    background: transparent;
+}
+
+#custom-arrow3 {
+    font-size: 23.5px;
+    color: @mpris;
+    background: transparent;
+}
+
+#custom-arrow4 {
+    font-size: 23.5px;
+    color: @tray;
+    background: @mpris;
+}
+
+#custom-arrow5 {
+    font-size: 23.5px;
+    color: @battery;
+    background: @tray;
+}
+
+#custom-arrow6 {
+    font-size: 23.5px;
+    color: @pulseaudio;
+    background: @battery;
+}
+
+#custom-arrow7 {
+    font-size: 23.5px;
+    color: @backlight;
+    background: @pulseaudio;
+}
+
+#custom-arrow8 {
+    font-size: 23.5px;
+    color: @cpu;
+    background: @backlight;
+}
+
+#custom-arrow9 {
+    font-size: 23.5px;
+    color: @memory;
+    background: @cpu;
+}
+
+#custom-arrow10 {
+    font-size: 23.5px;
+    color: @network;
+    background: @memory;
+}
+
+#custom-arrow11 {
+    font-size: 23.5px;
+    color: @swaync;
+    background: @network;
+}
+
+#custom-arrow12 {
+    font-size: 23.5px;
+    color: @date;
+    background: @swaync;
+}
+
+#custom-arrow13 {
+    font-size: 23.5px;
+    color: @time;
+    background: @date;
+}
+
+#custom-arrow14 {
+    font-size: 23.5px;
+    color: @wlogout;
+    background: @time;
+}

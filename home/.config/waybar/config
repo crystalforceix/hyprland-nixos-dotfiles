@@ -1,0 +1,290 @@
+{
+
+  // ---------------------------------
+  // General
+  // ---------------------------------
+
+  "layer": "bottom",
+  "position": "top",
+  "height": 30,
+
+  "modules-left": [
+    "hyprland/workspaces",
+    "custom/arrow2",
+    "hyprland/window"
+  ],
+
+  "modules-right": [
+    "custom/media",
+    "custom/arrow3",
+    "mpris",
+    "custom/arrow4",
+    "tray",
+    // "custom/layout",
+    "custom/arrow5",
+    "battery",
+    "custom/arrow6",
+    "pulseaudio",
+    //"custom/pulse",
+    //"custom/alsa",
+    "custom/arrow7",
+    "backlight",
+    "custom/arrow8",
+    "cpu",
+    "custom/arrow9",
+    "memory",
+    "custom/arrow10",
+    "network",
+    "custom/arrow11",
+    "custom/swaync",
+    "custom/arrow12",
+    "clock#date",
+    "custom/arrow13",
+    "clock#time",
+    "custom/arrow14",
+    "custom/wlogout"
+  ],
+
+  // ---------------------------------
+  // Modules
+  // ---------------------------------
+
+  "river/tags": {
+    "num-tags": 9
+  },
+
+  "hyprland/workspaces": {
+    "all-outputs": false,
+    "disable-click": false,
+    "disable-scroll": false,
+    "disable-scroll-wraparound": true,
+    "enable-bar-scroll": false,
+    "format": "{icon}",
+    "format-icons": {
+      "1": "一",
+      "2": "二",
+      "3": "三",
+      "4": "四",
+      "5": "五",
+      "6": "六",
+      "7": "七",
+      "8": "八",
+      "9": "九",
+      "10": "十"
+    }
+  },
+
+
+  "hyprland/window": {
+    "format": "{}",
+    "max-length": 30,
+	  "tooltip": false
+  },
+
+  "tray": {
+    "icon-size": 24,
+    "spacing": 8
+  },
+
+
+  "custom/media": {
+    "exec": "$HOME/.config/waybar/media.sh 2>/dev/null",
+    "interval": 2,
+    "tooltip": false
+  },
+
+  "custom/swaync": {
+  "format": "<big> 󰂚 </big>",
+  "on-click": "swaync-client -t",
+  "tooltip": false
+  },
+
+  "custom/wlogout": {
+  "format": " ",
+  "on-click": "wlogout",
+  "tooltip": false
+  },
+
+    "mpris": {
+        //"interval": 5,
+	"dynamic-order": ["artist", "title"],
+        "dynamic-len": 30,
+        "format": "{player_icon} {dynamic}",
+        "format-paused": "{status_icon} {dynamic}",
+        "player-icons": {
+            "default": "<big></big>"
+        },
+        "status-icons": {
+            "paused": "<big></big>"
+        },
+        "on-double-click-right": "playerctl next",
+        "on-scroll-down": "playerctl previous",
+    // "ignored-players": ["firefox"]
+    },
+
+  "battery": {
+    "states": {
+      "warning": 20,
+      "critical": 10
+    },
+    "format": " {capacity}%",
+    "format-discharging": "{icon} {capacity}%",
+    "format-icons": [
+      " ",
+      " ",
+      " ",
+      " ",
+      " "
+    ],
+    "interval": 5,
+    "tooltip": false
+  },
+
+  "pulseaudio": {
+    "scroll-step": 1,
+    "format": "{icon} {volume}%",
+    "format-bluetooth": "{icon} {volume}% ",
+    "format-muted": "婢",
+    "format-bluetooth-muted": "婢-",
+    "format-icons": {
+      "default": ["", "", ""]
+    }
+  },
+
+  "custom/pulse": {
+    "exec": "~/.local/bin/info/pulse 2>/dev/null",
+    "on-click": "pulsemixer --toggle-mute; pkill -x -RTMIN+11 waybar",
+    "on-scroll-up": "pulsemixer --change-volume +1; pkill -x -RTMIN+11 waybar",
+    "on-scroll-down": "pulsemixer --change-volume -1; pkill -x -RTMIN+11 waybar",
+    "signal": 11,
+    "interval": 10,
+    "tooltip": false
+  },
+
+  "custom/alsa": {
+    "exec": "amixer get Master | sed -nre 's/.*\\[off\\].*/婢 muted/p; s/.*\\[(.*%)\\].*/墳 \\1/p'",
+    "on-click": "amixer set Master toggle; pkill -x -RTMIN+11 waybar",
+    "on-scroll-up": "amixer set Master 1+; pkill -x -RTMIN+11 waybar",
+    "on-scroll-down": "amixer set Master 1-; pkill -x -RTMIN+11 waybar",
+    "signal": 11,
+    "interval": 10,
+    "tooltip": false
+  },
+
+  "backlight": {
+    "device": "eDP-1",
+    "format": " {percent}%",
+    "tooltip": false
+  },
+
+  "custom/backlight": {
+        "device": "eDP-1",
+        "format": "{icon} {percent}",
+        "tooltip-format": "{percent}",
+        "format-icons": ["󱩎 ", "󱩏 ", "󱩐 ", "󱩑 ", "󱩒 ", "󱩓 ", "󱩔 ", "󱩕 ", "󱩖 ", "󰛨 "],
+	},
+
+  "cpu": {
+    "format": " {usage}%",
+    "states": {
+      "warning": 70,
+      "critical": 90
+    },
+    "interval": 2,
+    "tooltip": false
+  },
+
+  "memory": {
+    "format": "異 {percentage}%",
+    "states": {
+      "warning": 70,
+      "critical": 90
+    },
+    "interval": 2,
+    "tooltip": false
+  },
+
+  "network": {
+    "format-wifi": "  {essid}",
+    "format-ethernet": " {bandwidthUpBits}  {bandwidthDownBits}",
+    // "format-ethernet": " {ifname}",
+    "format-disconnected": "",
+    "interval": 2,
+    "tooltip": false
+  },
+
+  "custom/weather": {
+    "exec": "$HOME/.local/bin/info/weather_detail",
+    "interval": 3600,
+    "tooltip": false
+  },
+
+  "clock#date": {
+    "format": "{:%a %e %b %Y}",
+    "locale": "C",
+    "interval": 10,
+    "tooltip": false
+  },
+
+  "clock#time": {
+    "format": "{:%H:%M}",
+    "locale": "C",
+    "interval": 10,
+    "tooltip": false
+  },
+
+  "custom/arrow2": {
+    "format": "",
+    "tooltip": false
+  },
+
+  "custom/arrow3": {
+    "format": "",
+    "tooltip": false
+  },
+  "custom/arrow4": {
+    "format": "",
+    "tooltip": false
+  },
+  "custom/arrow5": {
+    "format": "",
+    "tooltip": false
+  },
+  "custom/arrow6": {
+    "format": "",
+    "tooltip": false
+  },
+  "custom/arrow7": {
+    "format": "",
+    "tooltip": false
+  },
+  "custom/arrow8": {
+    "format": "",
+    "tooltip": false
+  },
+  "custom/arrow9": {
+    "format": "",
+    "tooltip": false
+  },
+  "custom/arrow10": {
+    "format": "",
+    "tooltip": false
+  },
+  "custom/arrow11": {
+    "format": "",
+    "tooltip": false
+  },
+  "custom/arrow12": {
+    "format": "",
+    "tooltip": false
+  },
+  "custom/arrow13": {
+    "format": "",
+    "tooltip": false
+  },
+    "custom/arrow14": {
+    "format": "",
+    "tooltip": false
+  }
+
+}

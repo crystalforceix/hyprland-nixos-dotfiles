@@ -1,0 +1,221 @@
+{
+
+  // ---------------------------------
+  // General
+  // ---------------------------------
+
+  "layer": "bottom",
+  "position": "top",
+  "height": 30,
+
+  "modules-left": [
+    "mpd",
+    "custom/arrow2",
+    "custom/bluetooth",
+    "custom/media",
+    "tray"
+  ],
+
+  "modules-right": [
+    "custom/arrow5",
+    "battery",
+    "custom/arrow6",
+    //"pulseaudio",
+    "custom/pulse",
+    //"custom/alsa",
+    "custom/arrow7",
+    "custom/temp",
+    "custom/arrow8",
+    "cpu",
+    "custom/arrow9",
+    "memory",
+    "custom/arrow10",
+    "network",
+    "custom/arrow11",
+    //"custom/weather",
+    "custom/arrow12",
+    "clock#date",
+    "custom/arrow13",
+    "clock#time"
+  ],
+
+  // ---------------------------------
+  // Modules
+  // ---------------------------------
+
+  "custom/bluetooth": {
+    "exec": "$HOME/.config/waybar/bluetooth.sh 2>/dev/null",
+    "interval": 2,
+    "tooltip": false
+  },
+
+  "custom/media": {
+    "exec": "$HOME/.config/waybar/media.sh 2>/dev/null",
+    "interval": 2,
+    "tooltip": false
+  },
+
+  "mpd": {
+    "format": "  {stateIcon}{title} - {artist}",
+    "format-disconnected": "ﱙ ",
+    "format-stopped": " ",
+    "unknow-tag": "N/A",
+    "state-icons": {
+      "playing": "",
+      "paused": "  "
+    },
+    "on-scroll-up": "mpc next",
+    "on-scroll-down": "mpc prev",
+    "interval": 2,
+    "tooltip": false
+  },
+
+  "battery": {
+    "states": {
+      "warning": 20,
+      "critical": 10
+    },
+    "format": " {capacity}%",
+    "format-discharging": "{icon} {capacity}%",
+    "format-icons": [
+      " ",
+      " ",
+      " ",
+      " ",
+      " "
+    ],
+    "interval": 5,
+    "tooltip": false
+  },
+
+  "pulseaudio": {
+    "scroll-step": 1,
+    "format": "{icon} {volume}%",
+    "format-bluetooth": "{icon} {volume}% ",
+    "format-muted": "婢",
+    "format-bluetooth-muted": "婢-",
+    "format-icons": {
+      "default": ["", "", ""]
+    }
+  },
+
+  "custom/pulse": {
+    "exec": "~/.local/bin/info/pulse 2>/dev/null",
+    "on-click": "pulsemixer --toggle-mute; pkill -x -RTMIN+11 waybar",
+    "on-scroll-up": "pulsemixer --change-volume +1; pkill -x -RTMIN+11 waybar",
+    "on-scroll-down": "pulsemixer --change-volume -1; pkill -x -RTMIN+11 waybar",
+    "signal": 11,
+    "interval": 10,
+    "tooltip": false
+  },
+
+  "custom/alsa": {
+    "exec": "amixer get Master | sed -nre 's/.*\\[off\\].*/婢 muted/p; s/.*\\[(.*%)\\].*/墳 \\1/p'",
+    "on-click": "amixer set Master toggle; pkill -x -RTMIN+11 waybar",
+    "on-scroll-up": "amixer set Master 1+; pkill -x -RTMIN+11 waybar",
+    "on-scroll-down": "amixer set Master 1-; pkill -x -RTMIN+11 waybar",
+    "signal": 11,
+    "interval": 10,
+    "tooltip": false
+  },
+
+  "custom/temp": {
+    "exec": "$HOME/.local/bin/info/tempamd",
+    // "exec": "$HOME/.local/bin/info/tempintel",
+    "format": " {}",
+    "interval": 2,
+    "tooltip": false
+  },
+
+  "cpu": {
+    "format": "{usage}% ﰆ",
+    "states": {
+      "warning": 70,
+      "critical": 90
+    },
+    "interval": 2,
+    "tooltip": false
+  },
+
+  "memory": {
+    "format": "異 {percentage}%",
+    "states": {
+      "warning": 70,
+      "critical": 90
+    },
+    "interval": 2,
+    "tooltip": false
+  },
+
+  "network": {
+    "format-wifi": "  {essid}",
+    "format-ethernet": " {bandwidthUpBits}  {bandwidthDownBits}",
+    // "format-ethernet": " {ifname}",
+    "format-disconnected": "",
+    "interval": 2,
+    "tooltip": false
+  },
+
+  "custom/weather": {
+    "exec": "$HOME/.local/bin/info/weather_detail",
+    "interval": 3600,
+    "tooltip": false
+  },
+
+  "clock#date": {
+    "format": "{:%a %e %b %Y}",
+    "locale": "C",
+    "interval": 10,
+    "tooltip": false
+  },
+
+  "clock#time": {
+    "format": "{:%H:%M}",
+    "locale": "C",
+    "interval": 10,
+    "tooltip": false
+  },
+
+  "custom/arrow2": {
+    "format": "",
+    "tooltip": false
+  },
+
+  "custom/arrow5": {
+    "format": "",
+    "tooltip": false
+  },
+  "custom/arrow6": {
+    "format": "",
+    "tooltip": false
+  },
+  "custom/arrow7": {
+    "format": "",
+    "tooltip": false
+  },
+  "custom/arrow8": {
+    "format": "",
+    "tooltip": false
+  },
+  "custom/arrow9": {
+    "format": "",
+    "tooltip": false
+  },
+  "custom/arrow10": {
+    "format": "",
+    "tooltip": false
+  },
+  "custom/arrow11": {
+    "format": "",
+    "tooltip": false
+  },
+  "custom/arrow12": {
+    "format": "",
+    "tooltip": false
+  },
+  "custom/arrow13": {
+    "format": "",
+    "tooltip": false
+  }
+
+}
