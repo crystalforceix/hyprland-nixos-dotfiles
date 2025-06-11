@@ -134,6 +134,7 @@ hardware.graphics.extraPackages32 = with pkgs; [
 	hyprshot
 	tty-clock
 	cmatrix
+	oh-my-posh
   ];
 
 

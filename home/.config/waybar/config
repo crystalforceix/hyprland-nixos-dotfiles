@@ -9,6 +9,7 @@
   "height": 30,
 
   "modules-left": [
+    "custom/nixoslogo",
     "hyprland/workspaces",
     "custom/arrow2",
     "hyprland/window"
@@ -207,10 +208,14 @@
   "network": {
     "format-wifi": "  {essid}",
     "format-ethernet": " {bandwidthUpBits}  {bandwidthDownBits}",
-    // "format-ethernet": " {ifname}",
-    "format-disconnected": "",
+    "tooltip-format": "Network",
+    "tooltip-format-wifi": "{ifname} @ {essid}\nIP: {ipaddr}\nStrength: {signalStrength}%\nFreq: {frequency}MHz\nUp: {bandwidthUpBits} Down: {bandwidthDownBits}",
+    "tooltip-format-ethernet": "{ifname}\nIP: {ipaddr}\n up: {bandwidthUpBits} down: {bandwidthDownBits}",
+    "tooltip-format-disconnected": "Disconnected",
+    "format-linked": "󰈁",
+    "format-disconnected": "⚠",
     "interval": 2,
-    "tooltip": false
+    "on-click": "kitty -e nmtui"
   },
 
   "custom/weather": {
@@ -223,13 +228,36 @@
     "format": "{:%a %e %b %Y}",
     "locale": "C",
     "interval": 10,
-    "tooltip": false
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",  // calendar
+    "rotate": 0,
+    "calendar": {
+            "mode"          : "month",
+            "mode-mon-col"  : 3,
+            "weeks-pos"     : "left",
+            "on-scroll"     : 1,
+            "on-click-right": "mode",
+},
+    "actions":  {
+            "on-click-right": "mode",
+            "on-click-forward": "tz_up",
+            "on-click-backward": "tz_down",
+            "on-click-middle": "shift_reset",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        },
   },
 
   "clock#time": {
     "format": "{:%H:%M}",
     "locale": "C",
     "interval": 10,
+    "tooltip": false
+  },
+
+  "custom/nixoslogo": {
+    "format": "<big></big>",
+    "on-click": "fuzzel",
+    "on-click-right": "kitty --class clipse -e 'clipse'",
     "tooltip": false
   },
 

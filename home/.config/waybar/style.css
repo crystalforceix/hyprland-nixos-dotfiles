@@ -21,6 +21,8 @@
 @define-color date #2e3440;
 @define-color time #eceff4;
 @define-color wlogout #7303fc;
+@define-color nixoslogo #ff9547;
+
 
 /* OneDark */
 /* @define-color background rgba(40, 44, 52, 0.9);
@@ -96,6 +98,7 @@
 
 /* Each module */
 #clock,
+#custom-nixoslogo,
 #custom-weather,
 #network,
 #memory,
@@ -265,7 +268,12 @@
 
 #custom-wlogout {
     background: @wlogout;
-    color: @white
+    color: @light
+}
+
+#custom-nixoslogo {
+    background: @nixoslogo;
+    color: @dark
 }
 
 /* -----------------------------------------------------------------------------
