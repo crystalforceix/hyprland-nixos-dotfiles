@@ -9,40 +9,26 @@
   "height": 30,
 
   "modules-left": [
+    "custom/pipeone",
     "custom/nixoslogo",
+    "custom/pipetwo",
     "hyprland/workspaces",
     "custom/arrow2",
-    "hyprland/window"
+    "hyprland/window",
+  ],
+
+  "modules-center": [
+    "group/trayapp", 
+    "clock#date",
+    "custom/swaync"
   ],
 
   "modules-right": [
-    "custom/media",
-    "custom/arrow3",
     "mpris",
-    "custom/arrow4",
-    "tray",
-    // "custom/layout",
-    "custom/arrow5",
-    "battery",
-    "custom/arrow6",
-    "pulseaudio",
-    //"custom/pulse",
-    //"custom/alsa",
-    "custom/arrow7",
-    "backlight",
-    "custom/arrow8",
-    "cpu",
-    "custom/arrow9",
-    "memory",
-    "custom/arrow10",
+    "group/batterystuff",
     "network",
-    "custom/arrow11",
-    "custom/swaync",
-    "custom/arrow12",
-    "clock#date",
-    "custom/arrow13",
+    "group/hardwareinfo",
     "clock#time",
-    "custom/arrow14",
     "custom/wlogout"
   ],
 
@@ -62,16 +48,16 @@
     "enable-bar-scroll": false,
     "format": "{icon}",
     "format-icons": {
-      "1": "一",
-      "2": "二",
-      "3": "三",
-      "4": "四",
-      "5": "五",
-      "6": "六",
-      "7": "七",
-      "8": "八",
-      "9": "九",
-      "10": "十"
+      "1": "<big>󰬺</big>",
+      "2": "<big>󰬻</big>",
+      "3": "<big>󰬼</big>",
+      "4": "<big>󰬽</big>",
+      "5": "<big>󰬾</big>",
+      "6": "<big>󰬿</big>",
+      "7": "<big>󰭀</big>",
+      "8": "<big>󰭁</big>",
+      "9": "<big>󰭂</big>",
+      "10": "<big>󰿩</big>"
     }
   },
 
@@ -95,13 +81,13 @@
   },
 
   "custom/swaync": {
-  "format": "<big> 󰂚 </big>",
+  "format": "<big>  </big>",
   "on-click": "swaync-client -t",
   "tooltip": false
   },
 
   "custom/wlogout": {
-  "format": " ",
+  "format": "<big> </big> ",
   "on-click": "wlogout",
   "tooltip": false
   },
@@ -113,10 +99,10 @@
         "format": "{player_icon} {dynamic}",
         "format-paused": "{status_icon} {dynamic}",
         "player-icons": {
-            "default": "<big></big>"
+            "default": ""
         },
         "status-icons": {
-            "paused": "<big></big>"
+            "paused": ""
         },
         "on-double-click-right": "playerctl next",
         "on-scroll-down": "playerctl previous",
@@ -144,11 +130,16 @@
   "pulseaudio": {
     "scroll-step": 1,
     "format": "{icon} {volume}%",
+    "on-click": "pavucontrol",
     "format-bluetooth": "{icon} {volume}% ",
     "format-muted": "婢",
     "format-bluetooth-muted": "婢-",
     "format-icons": {
-      "default": ["", "", ""]
+      "default": [
+      "",
+      " ",
+      " "
+      ]
     }
   },
 
@@ -174,7 +165,9 @@
 
   "backlight": {
     "device": "eDP-1",
-    "format": " {percent}%",
+    "format": " 󰖨 {percent}% ",
+    "on-click": "hyprshade on blue-light-filter",
+    "on-click-right": "hyprshade off",
     "tooltip": false
   },
 
@@ -196,7 +189,7 @@
   },
 
   "memory": {
-    "format": "異 {percentage}%",
+    "format": "󰘚 {percentage}%",
     "states": {
       "warning": 70,
       "critical": 90
@@ -211,9 +204,9 @@
     "tooltip-format": "Network",
     "tooltip-format-wifi": "{ifname} @ {essid}\nIP: {ipaddr}\nStrength: {signalStrength}%\nFreq: {frequency}MHz\nUp: {bandwidthUpBits} Down: {bandwidthDownBits}",
     "tooltip-format-ethernet": "{ifname}\nIP: {ipaddr}\n up: {bandwidthUpBits} down: {bandwidthDownBits}",
-    "tooltip-format-disconnected": "Disconnected",
+    "tooltip-format-disconnected": "Disconnected.",
     "format-linked": "󰈁",
-    "format-disconnected": "⚠",
+    "format-disconnected": "  Disconnected!",
     "interval": 2,
     "on-click": "kitty -e nmtui"
   },
@@ -248,21 +241,106 @@
   },
 
   "clock#time": {
-    "format": "{:%H:%M}",
+    "format": "| {:%H:%M} | ",
     "locale": "C",
     "interval": 10,
     "tooltip": false
   },
 
   "custom/nixoslogo": {
-    "format": "<big></big>",
+    "format": "󱄅",
     "on-click": "fuzzel",
     "on-click-right": "kitty --class clipse -e 'clipse'",
     "tooltip": false
   },
 
+  "custom/pipeone": {
+  "format": "|",
+  "tooltip": false
+  },
+
+  "custom/pipetwo": {
+  "format": "|",
+  "tooltip": false
+  },
+
+  "custom/firefox": {
+    "format": "󰈹",
+    "on-click": "firefox",
+    "tooltip": false
+  },
+
+  "custom/wallpaper": {
+    "format": "",
+    "on-click": "waypaper",
+    "tooltip": false
+  },
+
+  "custom/hyprpicker": {
+    "format": "",
+    "on-click": "hyprpicker -a",
+    "tooltip": false
+  },
+
+  "custom/neovim": {
+   "format": " ",
+   "on-click": "kitty -e neovim",
+   "tooltip": false
+  },
+
+  "custom/star": {
+    "format": "<big> </big>",
+    "tooltip": false
+  },
+
+   "group/trayapp": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 500,
+            "transition-left-to-right": false
+        },
+        "modules": [
+	    "custom/star",
+            "custom/neovim",
+	    "custom/firefox",
+	    "custom/hyprpicker",
+	    "custom/wallpaper",
+	    "custom/pipeone",
+            "tray",
+	    "custom/pipetwo"
+        ]
+    },
+
+    
+    "group/hardwareinfo": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 500,
+            "transition-left-to-right": false
+        },
+        "modules": [
+            "custom/arrow13",
+            "cpu",
+            "memory",
+        ]
+    },
+
+    
+    "group/batterystuff": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 500,
+            "transition-left-to-right": false
+        },
+        "modules": [
+            "battery",
+            "pulseaudio",
+            "backlight"
+        ]
+    },
+
   "custom/arrow2": {
-    "format": "",
+    "format": "   ",
     "tooltip": false
   },
 
@@ -307,7 +385,7 @@
     "tooltip": false
   },
   "custom/arrow13": {
-    "format": "",
+    "format": "<small></small>",
     "tooltip": false
   },
     "custom/arrow14": {

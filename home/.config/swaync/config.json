@@ -35,10 +35,10 @@
       "actions": [
         {
           "active": false,
-          "command": "notify-send 'hey'",
+          "command": "sleep 0.5 && systemctl suspend && hyprlock",
           "label": "󰤄",
-          "type": "toggle",
-          "update_command": "notify-send 'Hi'"
+          "type": "button",
+	  "update_command": "notify-send 'sleeping...'"
         },
         {
           "active": false,
@@ -60,7 +60,7 @@
         },
         {
           "active": false,
-          "command": "swaync-client -t",
+          "command": "poweroff",
           "label": "",
           "type": "toggle"
         }

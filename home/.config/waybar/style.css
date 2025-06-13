@@ -1,5 +1,5 @@
 /* Nord */
-@define-color background rgba(46, 52, 64, 0.9);
+@define-color background rgba(46, 52, 64, 0.6);
 @define-color dark #2e3440;
 @define-color light #eceff4;
 @define-color warning #d08770;
@@ -21,7 +21,7 @@
 @define-color date #2e3440;
 @define-color time #eceff4;
 @define-color wlogout #7303fc;
-@define-color nixoslogo #ff9547;
+@define-color nixoslogo #8FA8EA;
 
 
 /* OneDark */
@@ -91,7 +91,7 @@
 #waybar {
     background: @background;
     color: @light;
-    font-family: Iosevka Nerd Font, Sarasa Mono J;
+    font-family: DepartureMono Nerd Font;
     font-size: 12pt;
     font-weight: bold;
 }
@@ -110,14 +110,23 @@
 #battery,
 #custom-layout,
 #mpris,
+#custom-pipeone,
+#custom-pipetwo,
 #custom-media,
+#custom-neovim,
+#custom-firefox,
+#custom-hyprpicker,
+#custom-wallpaper,
+#custom-star,
+#group-trayapp,
+#group-hardwareinfo,
+#group-batterystuff,
 #mode {
     padding-left: 8px;
     padding-right: 8px;
 }
 
 #tray {
-    background: @tray;
     color: @light;
 }
 
@@ -184,8 +193,7 @@
 #workspaces button {
     padding-left: 4px;
     padding-right: 4px;
-    color: @dark;
-    background: @workspaces;
+    color: @light;
 }
 
 #workspaces button.active {
@@ -202,8 +210,7 @@
 }
 
 #mpris {
-    background: @mpris;
-    color: @dark;
+    color: @light;
 }
 
 #custom-layout {
@@ -211,14 +218,20 @@
     color: @light;
 }
 
+#custom-pipeone {
+    color: @nixoslogo
+}
+
+#custom-pipetwo {
+    color: @nixoslogo
+}
+
 #battery {
-    background: @battery;
-    color: @dark;
+    color: @light;
 }
 
 #pulseaudio {
-    background: @pulseaudio;
-    color: @dark;
+    color: @light;
 }
 
 #custom-pulse {
@@ -232,48 +245,39 @@
 }
 
 #backlight {
-    background: @backlight;
-    color: @dark;
+    color: @light;
 }
 
 #cpu {
-    background: @cpu;
-    color: @dark;
+    color: @light;
 }
 
 #memory {
-    background: @memory;
-    color: @dark;
+    color: @light;
 }
 
 #network {
-    background: @network;
-    color: @dark;
+    color: @light;
 }
 
 #custom-swaync {
-    background: @swaync;
-    color: @dark;
+    color: @light;
 }
 
 #clock.date {
-    background: @date;
     color: @light;
 }
 
 #clock.time {
-    background: @time;
-    color: @dark;
+    color: @light;
 }
 
 #custom-wlogout {
-    background: @wlogout;
     color: @light
 }
 
 #custom-nixoslogo {
-    background: @nixoslogo;
-    color: @dark
+    color: @nixoslogo
 }
 
 /* -----------------------------------------------------------------------------
@@ -281,7 +285,7 @@
  * -------------------------------------------------------------------------- */
 
 #custom-arrow2 {
-    font-size: 23.5px;
+    font-size: 23px;
     color: @workspaces;
     background: transparent;
 }
