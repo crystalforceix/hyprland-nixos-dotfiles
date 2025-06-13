@@ -6,6 +6,12 @@
       ./hardware-configuration.nix
     ];
 
+  # Compression for Btrfs subvolume
+
+fileSystems = {
+  "/".options = [ "compress=zstd" ];
+};
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -13,8 +19,8 @@
   # zen-kernel
   boot.kernelPackages = pkgs.linuxPackages_zen;
     boot.kernel.sysctl = {
-    "vm.swappiness" = 60; # Giảm độ ưu tiên của việc hoán đổi bộ nhớ
-    "vm.vfs_cache_pressure" = 50; # Tăng cường bộ nhớ đệm hệ thống tập tin
+    "vm.swappiness" = 60; 
+    "vm.vfs_cache_pressure" = 50; 
     "vm.dirty_background_ratio" = 10;
     "vm.dirty_ratio" = 20;
     "kernel.sched_latency_ns" = 4000000;
@@ -47,6 +53,7 @@ hardware.graphics.extraPackages32 = with pkgs; [
 
   # Bluetooth service
   hardware.bluetooth.enable = true;
+
   # Pipewire
   security.rtkit.enable = true;
     services.pipewire = {
@@ -104,20 +111,19 @@ hardware.graphics.extraPackages32 = with pkgs; [
 
   # NixOS Package Manager
   environment.systemPackages = with pkgs; [
+	
+	# Apps
   	firefox
+	nautilus
+	blueman
+
+	# Hyprland stuff
 	kitty
 	fuzzel
 	fish
-	htop
-	tlp
-	neovim
 	pavucontrol
 	brightnessctl
-	neofetch
-	blueman
 	waybar
-	nautilus
-	git
 	playerctl
 	lm_sensors
 	swaynotificationcenter
@@ -125,16 +131,37 @@ hardware.graphics.extraPackages32 = with pkgs; [
 	wlogout
 	pamixer
 	swww
-	fcitx5-configtool
 	nwg-look
 	papirus-icon-theme
 	clipse
 	wl-clipboard
-	libnotify
 	hyprshot
+	oh-my-posh
+	hyprpicker
+	waypaper
+	hyprshade
+
+	# Terminal app
+	htop
+	tlp  # Power manager
+	neofetch
+	git
+	fcitx5-configtool
+	libnotify
 	tty-clock
 	cmatrix
-	oh-my-posh
+
+        # Neovim stuff
+	neovim
+	gnumake
+	unzip
+	gcc
+	ripgrep
+	fd
+
+	# Rollback for btrfs
+	timeshift    # "sudo -E timeshift-gtk" to run timeshift GUI
+
   ];
 
 
@@ -185,6 +212,7 @@ hardware.graphics.extraPackages32 = with pkgs; [
   # Fonts manager
   fonts.packages = with pkgs; [ 
   	nerd-fonts.symbols-only
+	nerd-fonts.departure-mono
 ];
 
   # Hyprland
@@ -192,6 +220,8 @@ hardware.graphics.extraPackages32 = with pkgs; [
 
   # Hyprlock
   programs.hyprlock.enable = true;
+
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
