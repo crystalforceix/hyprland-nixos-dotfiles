@@ -8,20 +8,18 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usb_storage" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" "amdgpu" ];
   boot.extraModulePackages = [ ];
-  boot.supportedFilesystems = [ "btrfs" ]; # Btrfs support
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/c03e3bbe-008b-4230-a46f-9f09262e06f1";
-      fsType = "btrfs";
-      options = [ "subvol=@" ];
+    { device = "/dev/disk/by-uuid/d5caee90-f5d6-400b-a494-25c68daf4ef6";
+      fsType = "f2fs";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/4D9D-9389";
+    { device = "/dev/disk/by-uuid/11F2-6777";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };

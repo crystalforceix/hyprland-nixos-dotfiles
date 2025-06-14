@@ -6,11 +6,6 @@
       ./hardware-configuration.nix
     ];
 
-  # Compression for Btrfs subvolume
-
-fileSystems = {
-  "/".options = [ "compress=zstd" ];
-};
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -158,9 +153,9 @@ hardware.graphics.extraPackages32 = with pkgs; [
 	gcc
 	ripgrep
 	fd
-
-	# Rollback for btrfs
-	timeshift    # "sudo -E timeshift-gtk" to run timeshift GUI
+	
+	# Visual Studio Code
+	vscode
 
   ];
 

@@ -284,7 +284,7 @@
 
   "custom/neovim": {
    "format": " ",
-   "on-click": "kitty -e neovim",
+   "on-click": "kitty -e nvim",
    "tooltip": false
   },
 
@@ -319,7 +319,7 @@
             "transition-left-to-right": false
         },
         "modules": [
-            "custom/arrow13",
+            "custom/arrow3",
             "cpu",
             "memory",
         ]
@@ -345,7 +345,7 @@
   },
 
   "custom/arrow3": {
-    "format": "",
+    "format": "<small></small>",
     "tooltip": false
   },
   "custom/arrow4": {
